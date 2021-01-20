@@ -178,32 +178,36 @@ end
 
 
 if MsgText[1] == "المالك"  or MsgText[1] == "المنشئ" or  MsgText[1] == "المنشى" then
+local url , res = https.request(ApiToken..'/getChatAdministrators?chat_id='..msg.chat_id_)
+local get = JSON.decode(url)
+for k,v in pairs(get.result) do
+if v.status == "creator" and v.user.first_name ~= "" then
+return sendMsg(msg.chat_id_,msg.id_,"المالك:\n["..v.user.first_name.."](t.me/"..(v.user.username or "TH3BS"))
+end
+end
 
 message = ""
 local monsha = redis:smembers(boss..':MONSHA_Group:'..msg.chat_id_)
 if #monsha == 0 then 
-message = message .."📛| لا يوجد مالك !\n"
+sendMsg(msg.chat_id_,msg.id_,"📛| لا يوجد مالك !\n")
 else
 for k,v in pairs(monsha) do
 local info = redis:hgetall(boss..'username:'..v)
 if info and info.username and info.username:match("@[%a%d_]+") then
 GetUserName(info.username,function(arg,data)
 
-uuuu = arg.UserName:gsub("@","")
-sendMsg(arg.ChatID,arg.MsgID,"["..data.title_.."](t.me/"..uuuu..")")
+mmmmm = arg.UserName:gsub("@","")
+sendMsg(arg.ChatID,arg.MsgID,"المالك:\n["..data.title_.."](t.me/"..mmmmm..")")
 end,{ChatID=msg.chat_id_,MsgID=msg.id_,UserName=info.username})
 else
-message = message..' ['..info.username..'](t.me/TH3bs)  \n'
-sendMsg(msg.chat_id_,msg.id_,message)
+sendMsg(msg.chat_id_,msg.id_,'المالك:\n['..info.username..'](t.me/TH3BS)  \n')
 end
 
 break
 
 end
 end
-
 end
-
 
 if MsgText[1] == "المجموعه" then
 if not msg.Admin then return "📪¦ هذا الامر يخص {الادمن,المدير,المنشئ,المطور} فقط  \n" end
@@ -1693,12 +1697,50 @@ redis:setex(boss..'about:witting'..msg.chat_id_..msg.sender_user_id_,300,true)
 return "📭¦ حسننا عزيزي  ✋🏿\n🗯¦ الان ارسل الوصف  للمجموعه\n🛠" 
 end
 
-if MsgText[1] == "تاك للكل" then 
+if MsgText[1] == "الادارين" or MsgText[1] == "الأداريين" or MsgText[1] == "الاداريين" or MsgText[1] == "الادارين" then   
 if not msg.Admin then return "📪¦ هذا الامر يخص {الادمن,المدير,المنشئ,المطور} فقط  \n" end
 if not redis:get(boss.."lock_takkl"..msg.chat_id_) then  return "📛*¦* الامر معطل من قبل الادراة" end 
+if redis:get(boss.."chat:tagall"..msg.chat_id_) then  return "📛*¦* يمكنك عمل تاك للكل كل *5 دقائق* فقط" end 
+redis:setex(boss..'chat:tagall'..msg.chat_id_,300,true)
 return TagAll(msg) 
 end
 
+if MsgText[1] == "تاك للكل" then
+if not msg.Admin then return "📪¦ هذا الامر يخص {الادمن,المدير,المنشئ,المطور} فقط  \n" end
+if not redis:get(boss.."lock_takkl"..msg.chat_id_) then  return "📛*¦* الامر معطل من قبل الادراة" end 
+if redis:get(boss.."chat:tagall"..msg.chat_id_) then  return "📛*¦* يمكنك عمل تاك للكل كل *5 دقائق* فقط" end 
+redis:setex(boss..'chat:tagall'..msg.chat_id_,300,true)
+if MsgText[2] and MsgText[2]:match('^ل %d+$') then
+taglimit = MsgText[2]:match('^ل %d+$'):gsub('ل ','')
+
+else
+taglimit = 200
+end
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = taglimit
+},function(ta,hasn)
+x = 0
+list = hasn.members_
+for k, v in pairs(list) do
+GetUserID(v.user_id_,function(arg,data)
+x = x + 1
+if x == 1 then
+t = "👥¦ قائمة الاعضاء \n\n"
+end
+if data.username_ then
+t = t..""..x.."-l {[@"..data.username_.."]} \n"
+else
+tagname = FlterName(data.first_name_..' '..(data.last_name_ or ""),20)
+tagname = tagname:gsub("]","")
+tagname = tagname:gsub("[[]","")
+t = t..""..x.."-l {["..tagname.."](tg://user?id="..v.user_id_..")} \n"
+end
+if k == 0 then
+send_msg(msg.chat_id_,t,msg.id_)
+end
+end)
+end
+end,nil)
+end
 if MsgText[1] == "منع" then 
 if not msg.Admin then return "📪¦ هذا الامر يخص {الادمن,المدير,المنشئ,المطور} فقط  \n" end
 if MsgText[2] then
@@ -2796,6 +2838,14 @@ redis:setex(boss..'text_sudo:witting'..msg.sender_user_id_,1200,true)
 return '📭¦ حسننا عزيزي 🍁\n📋¦ الان قم بارسال الكليشه \n🛠' 
 end
 
+if MsgText[1] == "مسح كليشه المطور" then 
+if not redis:get(boss..":TEXT_SUDO") then
+return '⚙️¦ اوه 🙀 لا يوجد كليشه مطور اصلا ☹️\n🛠' end
+redis:del(boss..':TEXT_SUDO') 
+return '🙋🏼‍♂️¦ أهلا عزيزي '..msg.TheRank..'\n📛¦ تم مسح كليشه المطور\n✓' 
+end
+
+
 if MsgText[1] == "ضع شرط التفعيل" and MsgText[2] and MsgText[2]:match('^%d+$') then 
 redis:set(boss..':addnumberusers',MsgText[2]) 
 return '💱*¦* تم وضـع شـرط آلتفعيل آلبوت آذآ گآنت آلمـجمـوعهہ‏‏ آگثر مـن *【'..MsgText[2]..'】* عضـو  🍁\n' 
@@ -2859,7 +2909,10 @@ return false
 end
 
 if MsgText[1] == 'المطور' then
-return redis:get(boss..":TEXT_SUDO") or '🗃¦ لا توجد كليشه المطور .\n📰¦ يمكنك اضافه كليشه من خلال الامر\n       " `ضع كليشه المطور` " \n📡'
+GetUserID(SUDO_ID,function(arg,data)
+local SUDO_NAME = '['..Flter_Markdown(data.first_name_..' '..(data.last_name_ or ""))..'](tg://user?id='..SUDO_ID..')'
+return send_msg(msg.chat_id_,redis:get(boss..":TEXT_SUDO") or SUDO_NAME,msg.id_)
+end,nil)
 end
 
 if MsgText[1] == "اذاعه بالتثبيت"  or MsgText[1] =="اذاعه بالتثبيت 📬" then
@@ -3422,7 +3475,7 @@ echo '📟l •⊱ { نظام التشغيل } ⊰•\n*»» '"$linux_version"'*
 echo '*------------------------------\n*🔖l •⊱ { الذاكره العشوائيه } ⊰•\n*»» '"$memUsedPrc"'*'
 echo '*------------------------------\n*💾l •⊱ { وحـده الـتـخـزيـن } ⊰•\n*»» '"$HardDisk"'*'
 echo '*------------------------------\n*⚙️l •⊱ { الـمــعــالــج } ⊰•\n*»» '"`grep -c processor /proc/cpuinfo`""Core ~ {$CPUPer%} "'*'
-echo '*------------------------------\n*📡l •⊱ { موقـع الـسـيـرفـر } ⊰•\n*»» ]]..DataCenter..[[*'
+echo '*------------------------------\n*📡l •⊱ { موقـع الـسـيـرفـر } ⊰•\n*»» '`curl http://th3boss.com/ip/location`'*'
 echo '*------------------------------\n*👨🏾‍🔧l •⊱ { الــدخــول } ⊰•\n*»» '`whoami`'*'
 echo '*------------------------------\n*🔌l •⊱ { مـده تـشغيـل الـسـيـرفـر } ⊰•  \n*»» '"$uptime"'*'
 ]]):read('*all')
@@ -6293,6 +6346,12 @@ Boss = {
 
 
 "^(تاك للكل)$",
+"^(تاك للكل) (ل %d+)$",
+"^(الأدارين)$",
+"^(الأداريين)$",
+"^(الاداريين)$",
+"^(الادارين)$",
+
 "^(تنزيل الكل)$",
 "^(تقييد)$",
 "^(فك التقييد)$",
@@ -6395,6 +6454,7 @@ Boss = {
 "^(رفع الادمنيه)$",
 "^(صوره الترحيب)$",
 "^(ضع كليشه المطور)$",
+"^(مسح كليشه المطور)$",
 "^(المطور)$",
 "^(شرط التفعيل)$",
 "^(قائمه المجموعات)$",
