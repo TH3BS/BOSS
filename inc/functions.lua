@@ -886,7 +886,7 @@ end
 --================================{{  List Sudoer  }} ===================================
 
 function TagAll(msg)
-message = "قائمه التاكـ : \n\n"
+message = "قائمه الأداريين : \n\n"
 local monshaas = redis:smembers(boss..':MONSHA_Group:'..msg.chat_id_)
 local monsha = redis:smembers(boss..':MONSHA_BOT:'..msg.chat_id_)
 local Owners = redis:smembers(boss..'owners:'..msg.chat_id_)
