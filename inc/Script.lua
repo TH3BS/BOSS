@@ -1717,9 +1717,9 @@ else
 taglimit = 200
 end
 tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = taglimit
-},function(ta,hasn)
+},function(ta,moody)
 x = 0
-list = hasn.members_
+list = moody.members_
 for k, v in pairs(list) do
 GetUserID(v.user_id_,function(arg,data)
 x = x + 1
