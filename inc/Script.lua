@@ -1712,7 +1712,7 @@ if redis:get(boss.."chat:tagall"..msg.chat_id_) then  return "📛*¦* يمكن�
 redis:setex(boss..'chat:tagall'..msg.chat_id_,300,true)
 if MsgText[2] and MsgText[2]:match('^ل %d+$') then
 taglimit = MsgText[2]:match('^ل %d+$'):gsub('ل ','')
--
+
 else
 taglimit = 200
 end
