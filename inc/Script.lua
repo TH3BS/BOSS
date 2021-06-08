@@ -6507,12 +6507,12 @@ elseif Text== "فدوه" or Text=="فدوة" or Text=="فطوه" or Text=="فط�
 return sendMsg(msg.chat_id_,msg.id_,"لـوجـهـك ♥️.")
 elseif Text== "دي"  then return sendMsg(msg.chat_id_,msg.id_,"دعـبـل 🙂😂.")
 elseif Text== "اشكرك" then return sendMsg(msg.chat_id_,msg.id_,"تـدلـل يـحـبي 💕.")
-elseif Text== "ايديي" or Text=="ايدي" then 
+elseif Text== "ايديي" or Text=="ايدييي" then 
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
 USERNAME = USERNAME:gsub([[\_]],"_")
 USERCAR = utf8.len(USERNAME) 
-SendMention(msg.chat_id_,data.id_,msg.id_,"- اضـغط على الايدي ليتم النسـخ\n\n "..USERNAME.." ~⪼ ( "..data.id_.." )",37,USERCAR)  
+SendMention(msg.chat_id_,data.id_,msg.id_,"- اضـغط على الايدي ليتم النسـخ\n\n "..USERNAME.." ~⪼ ( "..data.id_.." )",92,USERCAR)  
 return false
 end)
 elseif Text=="اريد رابط الحذف" or Text=="اريد رابط حذف" or Text=="رابط حذف" or Text=="رابط الحذف" then
