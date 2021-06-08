@@ -2305,10 +2305,10 @@ return set_admins(msg)
 end
 
 end -- end of insert group 
-if MsgText[1] == "تعطيل الاذاعه"  or MsgText[1] =="تعطيل الاذاعه"	then return lock_brod(msg) end
-if MsgText[1] == "تفعيل تعيين الايدي" or MsgText[1] =="تفعيل تعيين الايدي" 	then return unlock_idediit(msg) end 
-if MsgText[1] == "تعطيل تعيين الايدي" or MsgText[1] =="تعطيل تعيين الايدي" 	then return lock_idediit(msg) end 
-if MsgText[1] == "تفعيل الاذاعه" or MsgText[1] =="تفعيل الاذاعه" 	then return unlock_brod(msg) end
+if MsgText[1] == "تعطيل الاذاعه" 	then return lock_brod(msg) end
+if MsgText[1] == "تفعيل تعيين الايدي"  	then return unlock_idediit(msg) end 
+if MsgText[1] == "تعطيل تعيين الايدي"  	then return lock_idediit(msg) end 
+if MsgText[1] == "تفعيل الاذاعه" then return unlock_brod(msg) end
 
 
 
@@ -2878,7 +2878,7 @@ end
 
 if msg.SudoBase then
 
-if MsgText[1] == "نقل ملكيه البوت" or MsgText[1] == "نقل ملكيه البوت" then
+if MsgText[1] == "نقل ملكيه البوت"  then
 redis:setex(boss..":Witting_MoveBot:"..msg.chat_id_..msg.sender_user_id_,300,true)
 return "- حسننا عزيزي\n- الان ارسل معرف المستخدم لنقل ملكية البوت له ."
 end
@@ -3028,16 +3028,16 @@ end)
 end
 return false
 end
-if MsgText[1] == "ضع صوره للترحيب" or MsgText[1]=="ضع صوره للترحيب" then
+if MsgText[1] == "ضع صوره للترحيب" then
 redis:setex(boss..'welcom_ph:witting'..msg.sender_user_id_..msg.chat_id_,300,true) 
 return'- حسننا عزيزي \n- الان قم بارسال الصوره للترحيب ' 
 end
 
-if MsgText[1] == "تعطيل البوت خدمي"  or MsgText[1] == "تعطيل البوت خدمي" then 
+if MsgText[1] == "تعطيل البوت خدمي"  then 
 return lock_service(msg) 
 end
 
-if MsgText[1] == "تفعيل البوت خدمي" or MsgText[1] == "تفعيل البوت خدمي" then 
+if MsgText[1] == "تفعيل البوت خدمي"  then 
 return unlock_service(msg) 
 end
 
@@ -3142,12 +3142,12 @@ return send_msg(msg.chat_id_,redis:get(boss..":TEXT_SUDO") or SUDO_NAME,msg.id_)
 end,nil)
 end
 
-if MsgText[1] == "اذاعه بالتثبيت"  or MsgText[1] =="اذاعه بالتثبيت" then
+if MsgText[1] == "اذاعه بالتثبيت" then
 if not msg.SudoUser then return"- هذا الامر يخص {المطور} فقط  \n" end
 return "- حسننا الان ارسل رساله ليتم اذاعتها بالتثبيت " 
 end
 
-if MsgText[1] == "اذاعه عام بالتوجيه" or MsgText[1] == "اذاعه عام بالتوجيه" then
+if MsgText[1] == "اذاعه عام بالتوجيه"  then
 if not msg.SudoUser then return"- هذا الامر يخص {المطور} فقط  \n" end
 if not msg.SudoBase and not redis:get(boss..'lock_brod') then 
 return "- الاذاعه مقفوله من قبل المطور الاساسي  " 
@@ -3156,7 +3156,7 @@ redis:setex(boss..'fwd:'..msg.sender_user_id_,300, true)
 return "- حسننا الان ارسل التوجيه للاذاعه " 
 end
 
-if MsgText[1] == "اذاعه عام" or MsgText[1] == "اذاعه عام" then		
+if MsgText[1] == "اذاعه عام"  then		
 if not msg.SudoUser then return"- هذا الامر يخص {المطور} فقط  \n" end
 if not msg.SudoBase and not redis:get(boss..'lock_brod') then 
 return "- الاذاعه مقفوله من قبل المطور الاساسي" 
@@ -3165,7 +3165,7 @@ redis:setex(boss..'fwd:all'..msg.sender_user_id_,300, true)
 return "- حسننا الان ارسل الكليشه للاذاعه عام" 
 end
 
-if MsgText[1] == "اذاعه خاص" or MsgText[1] == "اذاعه خاص" then	
+if MsgText[1] == "اذاعه خاص" then	
 if not msg.SudoUser then return "- هذا الامر يخص {المطور} فقط  \n" end
 if not msg.SudoBase and not redis:get(boss..'lock_brod') then 
 return "- الاذاعه مقفوله من قبل المطور الاساسي" 
@@ -3174,7 +3174,7 @@ redis:setex(boss..'fwd:pv'..msg.sender_user_id_,300, true)
 return "- حسننا الان ارسل الكليشه للاذاعه خاص"
 end
 
-if MsgText[1] == "اذاعه" or MsgText[1] == "اذاعه" then	
+if MsgText[1] == "اذاعه"  then	
 if not msg.SudoUser then return"- هذا الامر يخص {المطور} فقط  \n" end
 if not msg.SudoBase and not redis:get(boss..'lock_brod') then 
 return "- الاذاعه مقفوله من قبل المطور الاساسي" 
@@ -3183,22 +3183,22 @@ redis:setex(boss..'fwd:groups'..msg.sender_user_id_,300, true)
 return "- حسننا الان ارسل الكليشه للاذاعه للمجموعات " 
 end
 
-if MsgText[1] == "المطورين" or MsgText[1] == "المطورين" then
+if MsgText[1] == "المطورين"  then
 if not msg.SudoUser then return"- هذا الامر يخص {المطور} فقط  \n" end
 return sudolist(msg) 
 end
 
-if MsgText[1] == "قائمه العام" or MsgText[1]=="قائمه العام" then 
+if MsgText[1] == "قائمه العام"  then 
 if not msg.SudoUser then return"- هذا الامر يخص {المطور} فقط  \n" end
 return GetListGeneralBanned(msg) 
 end
 
-if MsgText[1] == "تعطيل التواصل" or MsgText[1]=="تعطيل التواصل" then 
+if MsgText[1] == "تعطيل التواصل"  then 
 if not msg.SudoBase then return"- هذا الامر يخص {المطور الاساسي} فقط  \n" end
 return lock_twasel(msg) 
 end
 
-if MsgText[1] == "تفعيل التواصل" or MsgText[1]=="تفعيل التواصل" then 
+if MsgText[1] == "تفعيل التواصل"  then 
 if not msg.SudoBase then return"- هذا الامر يخص {المطور الاساسي} فقط  \n" end
 return unlock_twasel(msg) 
 end
@@ -3350,7 +3350,7 @@ boss..'replay1Random'..msg.sender_user_id_)
 return '- تم الغاء الامـر بنجاح '
 end  
 
-if (MsgText[1] == '/files' or MsgText[1]== "الملفات" or MsgText[1]== "الملفات" ) then
+if (MsgText[1] == '/files' or MsgText[1]== "الملفات"  ) then
 if not msg.SudoBase then return "- هذا الامر يخص {المطور الاساسي} فقط  \n" end
 return All_File()
 end   
@@ -3360,7 +3360,7 @@ if MsgText[1] == 'اصدار السورس' or MsgText[1] == 'الاصدار' the
 return '- اصدار سورس الزعيم : *v'..version..'* '
 end
 
-if (MsgText[1] == 'تحديث السورس' or MsgText[1] == 'تحديث السورس') then
+if MsgText[1] == 'تحديث السورس' then
 if not msg.SudoBase then return "- هذا الامر يخص {المطور الاساسي} فقط  \n" end
 local GetVerison = https.request('https://th3bs.github.io/GetVersion.txt') or "0"
 GetVerison = GetVerison:gsub("\n",""):gsub(" ","")
@@ -3426,7 +3426,7 @@ if not msg.SudoBase then return"- هذا الامر يخص {المطور الا�
 return " البوت شـغــال" 
 end
 
-if (MsgText[1]== "ايدي" or MsgText[1]=="") and msg.type == "pv" then return  "\n"..msg.sender_user_id_.."\n"  end
+if (MsgText[1]== "ايدي" or MsgText[1]=="ايدي") and msg.type == "pv" then return  "\n"..msg.sender_user_id_.."\n"  end
 
 if MsgText[1]== "قناة السورس" and msg.type == "pv" then
 local inline = {{{text="قناه‏‏ السـورس : الـزعـيـم ",url="t.me/th3bs"}}}
@@ -3434,12 +3434,12 @@ send_key(msg.sender_user_id_,'  [قناة السورس: الـزعـيـم](t.me
 return false
 end
 
-if (MsgText[1]== "الاحصائيات" or MsgText[1]=="الاحصائيات") then
+if MsgText[1]== "الاحصائيات" then
 if not msg.SudoBase then return"- هذا الامر يخص {المطور الاساسي} فقط  \n" end
 return 'الاحصائيات  \n\n- عدد المجموعات المفعله : '..redis:scard(boss..'group:ids')..'\n- عدد المشتركين في البوت : '..redis:scard(boss..'users')..' '
 end
 ---------------[End Function data] -----------------------
-if MsgText[1]=="اضف رد عام" or MsgText[1]=="اضف رد عام" then
+if MsgText[1]=="اضف رد عام" then
 if not msg.SudoBase then return"- هذا الامر يخص {المطور الاساسي} فقط  \n" end
 redis:setex(boss..'addrd_all:'..msg.chat_id_..msg.sender_user_id_,300,true)
 redis:del(boss..'allreplay:'..msg.chat_id_..msg.sender_user_id_)
@@ -3447,12 +3447,12 @@ return "- حسننا الان ارسل كلمة الرد العام "
 end
 
 ---------------[End Function data] -----------------------
-if MsgText[1] == "تعيين كليشه الستارت" or MsgText[1] == "تعيين كليشة الستارت" or MsgText[1] == "تعيين كليشه الستارت" then
+if MsgText[1] == "تعيين كليشه الستارت" or MsgText[1] == "تعيين كليشة الستارت"  then
 if not msg.SudoBase then return"- هذا الامر يخص {المطور الاساسي} فقط  \n" end
 redis:setex(boss..':KStart:'..msg.chat_id_..msg.sender_user_id_,900,true)
 return "- حسننا الان ارسل كليشة الستارت \n\n- علما ان الاختصارات كالاتي : \n \n- {الاسم} : لوضع اسم المستخدم\n- {الايدي} : لوضع ايدي المستخدم\n- {المعرف} : لوضع معرف المستخدم \n- {الرتبه} : لوضع نوع رتبه المستخدم \n- {البوت} : لاضهار اسم البوت \n- {المطور} : لاضهار معرف المطور الاساسي .\n- {الردود} : لاضهار ردود عشوائيه ."
 end
-if MsgText[1] == "مسح كليشه الستارت" or MsgText[1] == "مسح كليشة الستارت" or MsgText[1] == "مسح كليشه الستارت" then
+if MsgText[1] == "مسح كليشه الستارت" or MsgText[1] == "مسح كليشة الستارت"  then
 if not msg.SudoBase then return"- هذا الامر يخص {المطور الاساسي} فقط  \n" end
 redis:del(boss..':Text_Start')
 return "- تم مسح كليشه الستارت "
@@ -3539,7 +3539,7 @@ return message
 end
 end
 
-if MsgText[1]== 'الردود العامه' or MsgText[1]=='الردود العامه' then
+if MsgText[1]== 'الردود العامه' then
 if not msg.SudoBase then return " للمطور فقط " end
 local names 	= redis:hkeys(boss..'replay:all')
 local photo 	= redis:hkeys(boss..'replay_photo:group:')
@@ -3662,7 +3662,7 @@ redis:del(boss..'replay1'..msg.chat_id_..msg.sender_user_id_)
 return "- حسننا , الان ارسل كلمه الرد "
 end
 
-if MsgText[1] == "ضع اسم للبوت" or MsgText[1]== 'ضع اسم للبوت' then
+if MsgText[1] == "ضع اسم للبوت"  then
 if not msg.SudoBase then return"- هذا الامر يخص {المطور الاساسي} فقط  \n" end
 redis:setex(boss..'namebot:witting'..msg.sender_user_id_,300,true)
 return"- حسننا عزيزي\n- الان ارسل الاسم  للبوت "
