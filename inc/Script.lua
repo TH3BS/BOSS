@@ -3426,7 +3426,7 @@ if not msg.SudoBase then return"- هذا الامر يخص {المطور الا�
 return " البوت شـغــال" 
 end
 
-if (MsgText[1]== "ايدي" or MsgText[1]=="ايدي") and msg.type == "pv" then return  "\n"..msg.sender_user_id_.."\n"  end
+if MsgText[1]== "ايدي" and msg.type == "pv" then return  "\n"..msg.sender_user_id_.."\n"  end
 
 if MsgText[1]== "قناة السورس" and msg.type == "pv" then
 local inline = {{{text="قناه‏‏ السـورس : الـزعـيـم ",url="t.me/th3bs"}}}
