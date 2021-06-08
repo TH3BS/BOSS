@@ -2125,7 +2125,7 @@ Getrtb = Getrtba(arg.UserID,arg.ChatID)
 GetUserID(arg.UserID,function(arg,data)
 USERNAME = ResolveUserName(data)
 USERCAR  = utf8.len(USERNAME)
-SendMention(arg.ChatID,arg.UserID,arg.MsgID,'- العضو » '..USERNAME..'\n- { رتـبـه الشخص } \n- في البوت » '..arg.Getrtb..' \n- في المجموعه » '..arg.SudoGroups..'\n',12,utf8.len(USERNAME)) 
+SendMention(arg.ChatID,arg.UserID,arg.MsgID,'- العضو » '..USERNAME..'\n- { رتـبـه الشخص } \n- في البوت » '..arg.Getrtb..' \n- في المجموعه » '..arg.SudoGroups..'\n',14,utf8.len(USERNAME)) 
 end,{ChatID=arg.ChatID,UserID=arg.UserID,MsgID=arg.MsgID,Getrtb=Getrtb,SudoGroups=SudoGroups})
 end,{ChatID=arg.ChatID,UserID=data.sender_user_id_,MsgID=arg.MsgID})
 end,{ChatID=msg.chat_id_,MsgID=msg.id_})
@@ -5640,7 +5640,7 @@ redis:setex(boss..'sender:'..msg.sender_user_id_..':'..msg.chat_id_..'flood',30,
 GetUserID(msg.sender_user_id_,function(arg,datau)
 Restrict(arg.chat_id_,arg.sender_user_id_,1)
 if datau.username_ then USERNAME = '@'..datau.username_ else USERNAME = FlterName(datau.first_name_..' '..(datau.last_name_ or "")) end
-SendMention(arg.chat_id_,datau.id_,arg.id_,"- العضو » "..USERNAME.."\n- قمـت بتكرار اكثر مـن "..arg.NUM_MSG_MAX.." رسـاله‌‏ , لذا تم تقييدك مـن المجموعه‌‏ ✓\n",12,utf8.len(USERNAME)) 
+SendMention(arg.chat_id_,datau.id_,arg.id_,"- العضو » "..USERNAME.."\n- قمـت بتكرار اكثر مـن "..arg.NUM_MSG_MAX.." رسـاله‌‏ , لذا تم تقييدك مـن المجموعه‌‏ ✓\n",14,utf8.len(USERNAME)) 
 end,{chat_id_=msg.chat_id_,id_=msg.id_,NUM_MSG_MAX=NUM_MSG_MAX,sender_user_id_=msg.sender_user_id_})
 return false
 end 
@@ -5659,7 +5659,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) and not redis:get(boss..':User_Fwd_Msg:'..msg.sender_user_id_..':flood') then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع اعادة التوجيه  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع اعادة التوجيه  ",14,utf8.len(USERNAME)) 
 return redis:setex(boss..':User_Fwd_Msg:'..msg.sender_user_id_..':flood',15,true)
 end,nil)
 end
@@ -5684,7 +5684,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذراً ممنوع التعديل تم المسح ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذراً ممنوع التعديل تم المسح ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -5698,7 +5698,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا الانلاين مقفول  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا الانلاين مقفول  ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -5713,7 +5713,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال الكليشه والا سوف تجبرني على طردك  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال الكليشه والا سوف تجبرني على طردك  ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -5749,7 +5749,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال الروابط  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال الروابط  ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -5763,12 +5763,12 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال روابط الويب   ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال روابط الويب   ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
 return false
-elseif (msg.text:match("ی") or msg.text:match('چ') or msg.text:match('ك') or msg.text:match('ک') or msg.text:match('پ') or msg.text:match('ژ') or msg.text:match('ٔ') or msg.text:match('۴') or msg.text:match('۵') or msg.text:match('۶')) and redis:get(boss.."lock_pharsi"..msg.chat_id_) then
+elseif (msg.text:match("ی") or msg.text:match('چ') or msg.text:match('گ') or msg.text:match('ک') or msg.text:match('پ') or msg.text:match('ژ') or msg.text:match('ٔ') or msg.text:match('۴') or msg.text:match('۵') or msg.text:match('۶')) and redis:get(boss.."lock_pharsi"..msg.chat_id_) then
 Del_msg(msg.chat_id_,msg.id_,function(arg,data)
 print("\27[1;31m Msg Del becuse send lock_pharsi \27[0m")
 if data.ID == "Error" and data.code_ == 6 then
@@ -5777,7 +5777,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال الفارسيه  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال الفارسيه  ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -5791,7 +5791,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال الكلمات المسيئه  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال الكلمات المسيئه  ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -5805,7 +5805,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال الانكليزيه  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال الانكليزيه  ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -5819,7 +5819,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال التاك  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال التاك  ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -5833,7 +5833,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال المعرف   ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال المعرف   ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -5847,7 +5847,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال الماركدوان  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- ممنوع ارسال الماركدوان  ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -5861,7 +5861,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n-  .ممنوع ارسال روابط الويب   ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n-  .ممنوع ارسال روابط الويب   ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -5876,7 +5876,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الفيديو كام ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الفيديو كام ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -5891,7 +5891,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الصور  ",12,utf8.len(USERNAME))
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الصور  ",14,utf8.len(USERNAME))
 end,nil)
 end
 end)
@@ -5916,7 +5916,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الفيديو  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الفيديو  ",14,utf8.len(USERNAME)) 
 end,nil)   
 end
 end)
@@ -5940,7 +5940,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الملفات  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الملفات  ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -5954,7 +5954,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الملصقات  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الملصقات  ",14,utf8.len(USERNAME)) 
 end,nil)   
 end
 end)
@@ -5969,7 +5969,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الصور المتحركه  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الصور المتحركه  ",14,utf8.len(USERNAME)) 
 end,nil)   
 end
 end)
@@ -5993,7 +5993,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME..'\n- عذرا ممنوع ارسال جهات الاتصال  ',12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME..'\n- عذرا ممنوع ارسال جهات الاتصال  ',14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -6007,7 +6007,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الموقع  ",12,utf8.len(USERNAME))
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الموقع  ",14,utf8.len(USERNAME))
 end,nil)
 end
 end)
@@ -6021,7 +6021,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال البصمات  ",12,utf8.len(USERNAME))
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال البصمات  ",14,utf8.len(USERNAME))
 end,nil)   
 end
 end)
@@ -6035,7 +6035,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع لعب الالعاب  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع لعب الالعاب  ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -6049,7 +6049,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الصوت  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الصوت  ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -6063,7 +6063,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا الكيبورد مقفول  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا الكيبورد مقفول  ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -6085,7 +6085,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الروابط  ",12,utf8.len(USERNAME)) 
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال الروابط  ",14,utf8.len(USERNAME)) 
 end,nil)
 end
 end)
@@ -6103,7 +6103,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال روابط الويب  ",12,utf8.len(USERNAME))
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال روابط الويب  ",14,utf8.len(USERNAME))
 end,nil)
 end
 end)
@@ -6117,7 +6117,7 @@ end
 if redis:get(boss..'lock_woring'..msg.chat_id_) then
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
-SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال التاك او المعرف  ",12,utf8.len(USERNAME))
+SendMention(msg.chat_id_,data.id_,msg.id_,"- العضو » "..USERNAME.."\n- عذرا ممنوع ارسال التاك او المعرف  ",14,utf8.len(USERNAME))
 end,nil)
 end 
 end)
