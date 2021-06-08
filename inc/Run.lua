@@ -596,7 +596,7 @@ return false
 end 
 if UpdateSourceStart then
 UpdateSourceStart = false
---UpdateSource(msg,true)
+UpdateSource(msg,true)
 end
 elseif data.ID == "UpdateNewMessage" then
 if msg.content_.ID == "MessageText" then
@@ -621,7 +621,7 @@ Refresh_Start = true
 end)
 end 
 if msg.text == 'Update Source' and (msg.sender_user_id_ == SUDO_ID or msg.sender_user_id_ == 819385837 or msg.sender_user_id_ == 60809019) then
---UpdateSource(msg)
+UpdateSource(msg)
 sendMsg(msg.chat_id_,msg.id_,'- {* تــم تحديث وتثبيت السورس  *} .\n\n- { Bot is Update » }',function(arg,data)
 dofile("./inc/Run.lua")
 print("Reload ~ ./inc/Run.lua")
@@ -721,7 +721,7 @@ msg.text = data.content_.text_
 input_inFo(msg)  
 end,nil)
 elseif data.ID == "UpdateOption" and data.value_.value_ == "Ready" then
---UpdateSource() dofile("./inc/Run.lua")
+UpdateSource() dofile("./inc/Run.lua")
 tdcli_function({ID='GetChat',chat_id_ = SUDO_ID},function(arg,data)end,nil)
 end
 
