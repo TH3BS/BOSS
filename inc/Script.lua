@@ -3426,7 +3426,7 @@ if not msg.SudoBase then return"- هذا الامر يخص {المطور الا�
 return " البوت شـغــال" 
 end
 
-if (MsgText[1]== "ايدي" or MsgText[1]=="ايدي") and msg.type == "pv" then return  "\n"..msg.sender_user_id_.."\n"  end
+if (MsgText[1]== "ايدي" or MsgText[1]=="") and msg.type == "pv" then return  "\n"..msg.sender_user_id_.."\n"  end
 
 if MsgText[1]== "قناة السورس" and msg.type == "pv" then
 local inline = {{{text="قناه‏‏ السـورس : الـزعـيـم ",url="t.me/th3bs"}}}
@@ -6507,12 +6507,12 @@ elseif Text== "فدوه" or Text=="فدوة" or Text=="فطوه" or Text=="فط�
 return sendMsg(msg.chat_id_,msg.id_,"لـوجـهـك ♥️.")
 elseif Text== "دي"  then return sendMsg(msg.chat_id_,msg.id_,"دعـبـل 🙂😂.")
 elseif Text== "اشكرك" then return sendMsg(msg.chat_id_,msg.id_,"تـدلـل يـحـبي 💕.")
-elseif Text== "ايديي" or Text=="ايدييي" then 
+elseif Text== "ايديي" or Text=="ايدي" then 
 GetUserID(msg.sender_user_id_,function(arg,data)
 if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data) end
 USERNAME = USERNAME:gsub([[\_]],"_")
 USERCAR = utf8.len(USERNAME) 
-SendMention(msg.chat_id_,data.id_,msg.id_,"- اضـغط على الايدي ليتم النسـخ\n\n "..USERNAME.." ~⪼ ( "..data.id_.." )",92,USERCAR)  
+SendMention(msg.chat_id_,data.id_,msg.id_,"- اضـغط على الايدي ليتم النسـخ\n\n "..USERNAME.." ~⪼ ( "..data.id_.." )",37,USERCAR)  
 return false
 end)
 elseif Text=="اريد رابط الحذف" or Text=="اريد رابط حذف" or Text=="رابط حذف" or Text=="رابط الحذف" then
