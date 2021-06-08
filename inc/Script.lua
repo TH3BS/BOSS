@@ -3144,14 +3144,12 @@ end
 
 if MsgText[1] == "اذاعه بالتثبيت"  then
 if not msg.SudoUser then return"- هذا الامر يخص {المطور} فقط  \n" end
-if redis:get(boss.."ActiveGroups") == "300" then return '- عذرا اشتراكك مقيد من استخدام الاذاعه يرجى الترقيه للتمكن من الاذاعه للمجموعات  ' end
-redis:setex(boss..':prod_pin:'..msg.chat_id_..msg.sender_user_id_,300, true) 
+
 return "- حسننا الان ارسل رساله ليتم اذاعتها بالتثبيت " 
 end
 
 if MsgText[1] == "اذاعه عام بالتوجيه"  then
-if redis:get(boss.."ActiveGroups") == "300" then return '- عذرا اشتراكك مقيد من استخدام الاذاعه يرجى الترقيه للتمكن من الاذاعه للمجموعات  ' end
-redis:setex(boss..':prod_pin:'..msg.chat_id_..msg.sender_user_id_,300, true) 
+
 if not msg.SudoUser then return"- هذا الامر يخص {المطور} فقط  \n" end
 if not msg.SudoBase and not redis:get(boss..'lock_brod') then 
 return "- الاذاعه مقفوله من قبل المطور الاساسي  " 
@@ -3161,8 +3159,7 @@ return "- حسننا الان ارسل التوجيه للاذاعه "
 end
 
 if MsgText[1] == "اذاعه عام" then		
-if redis:get(boss.."ActiveGroups") == "300" then return '- عذرا اشتراكك مقيد من استخدام الاذاعه يرجى الترقيه للتمكن من الاذاعه للمجموعات  ' end
-redis:setex(boss..':prod_pin:'..msg.chat_id_..msg.sender_user_id_,300, true) 
+
 if not msg.SudoUser then return"- هذا الامر يخص {المطور} فقط  \n" end
 if not msg.SudoBase and not redis:get(boss..'lock_brod') then 
 return "- الاذاعه مقفوله من قبل المطور الاساسي" 
