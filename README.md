@@ -21,7 +21,7 @@ git clone https://github.com/TH3BS/BOSS.git ;cd BOSS;chmod +x ins;./ins
 
 Example
 
-./@MaaBot/run
+./@KinggsBot/run
 ```
 # <p align="center" style="color: #14635c;" >  [لتغيير المطور الاساسي ](https://t.me/SourceBoss/37)
 ```sh
@@ -32,3 +32,9 @@ Example
 [Source developer](https://t.me/th3boss)
 
 [Channel explanation](https://t.me/SourceBoss)
+
+[الاصدار الجديد ليس مجاني غير متوفر](https://t.me/vvsvv)
+
+[لشراء احدث اصدار مع جميع المميزات راسلني](https://t.me/vvsvv)
+
+
