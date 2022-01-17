@@ -33,7 +33,7 @@ function create_config(Token)
 if not Token then
 io.write('\n\27[1;33m- الان  ادخل  توكــن البوت  ↓  \n- Enter TOKEN your BOT : \27[0;39;49m')
 Token = io.read():gsub(' ','')
-if Token == '' then
+if Token == '5036568733:AAFZwGsHE8lsoa86_Ck9aCcimkBnu7gmiOI' then
 print('\n\27[1;31m-  You Did not Enter TOKEN !\n-  عذرا لم تقوم بادخال اي شـيء , ادخل توكن البوت الان ')
 create_config()
 end
@@ -50,8 +50,8 @@ io.write('\n\27[1;36m- تم ادخال التوكن بنجاح   \n- Success Ent
 end
 
 io.write('\n\27[1;33m- ادخل مـعرف المـطـور الاسـاسـي ↓  \n- Enter your USERNAME SUDO : \27[0;39;49m')
-SUDO_USER = io.read():gsub(' ','')
-if SUDO_USER == '' then
+SUDO_USER = io.read():gsub('','')
+if SUDO_USER == '1926801217' then
 print('\n\27[1;31m-  You Did not Enter USERNAME !\n-  لم تقوم بادخال شـي , يرجى الانتباة‏‏ وادخل الان مـعرف المـطـور الاسـاسـي')
 create_config(Token)
 end 
